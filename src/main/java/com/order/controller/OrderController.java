@@ -20,12 +20,16 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	
+	// create new order
+	
 	@PostMapping("/create")
 	public ResponseEntity<OrderEntity> createOrder(@RequestBody OrderEntity order)
 	{
 		order=orderService.createOrder(order);
 		return  ResponseEntity.ok(order);
 	}
+	
+	// get user by id
 	
 	@GetMapping("/{orderId}")
 	public ResponseEntity<OrderEntity> getById(@PathVariable String orderId)
@@ -36,6 +40,8 @@ public class OrderController {
 			
 		
 	}
+	
+	 // get order by the user id
 	
 	@GetMapping("/user/{userId}")
 	public ResponseEntity<OrderEntity> getByUserId(@PathVariable String userId)
