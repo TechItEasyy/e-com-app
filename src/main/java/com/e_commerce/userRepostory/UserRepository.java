@@ -10,7 +10,7 @@ import com.e_commerce.userEntity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String>{
 	@Query("select user from UserEntity user where user.email=:email and user.password=:password")
-	public UserEntity login(@Param("email")String email,@Param("password") String password);
+	public UserEntity findByEmailAndPassword(@Param("email") String email,@Param("password") String password);
 	
 
 }

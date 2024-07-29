@@ -31,8 +31,14 @@ public class UserController {
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserEntity> getUserById(@PathVariable String userId)
 	{
+		
 		UserEntity user =	userSerice.getUser(userId);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);	
+		
+		if(user==null)
+		{
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(user);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(user);	
 	}
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserEntity> updateUser(@ PathVariable String userId,@RequestBody UserEntity userEntity)
